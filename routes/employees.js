@@ -3,7 +3,7 @@ const router=express.Router()
 const Employee=require('../models/employee')
 
 //Get all
-router.get('/', async (req,res)=>{
+router.get('/employees', async (req,res)=>{
     try {
         const employees = await Employee.find()
         res.json(employees)
@@ -21,16 +21,11 @@ router.get('/:id',(req,res)=>{
 
 router.get('/employees' , (req,res)=>{
     var gender= req.params.gender
-    res.json({'hello':'hello'})
+    console.log('hello')
 })
 //GET by ID
 router.get('/:id',(req,res)=>{
-    collection.findOne({ "_id": new ObjectId(request.params.id) }, (error, result) => {
-        if(error) {
-            return response.status(500).send(error);
-        }
-        response.send(result);
-    });
+    
 })
 //update
 router.patch('/:id',(req,res)=>{
