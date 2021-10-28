@@ -6,39 +6,29 @@ const app=express()
 const mongoose=require('mongoose')
 const fs = require("fs");
 
+const employessRouter=require('./routes/employees');
+
 var data=[];
 const jsonString = fs.readFileSync("./data.json");
 data= JSON.parse(jsonString)
+// module.exports = { testers: "data" };
 
-
-// fs.readFile("./data.json", "utf8", (err, jsonString) => {
-//   if (err) {
-//     console.log("File read failed:", err);
-//     return;
-//   }
-   
-// });
-
-// mongoose.connect(process.env.DATABASE_URL,{ useNewUrlParser: true})
-mongoose.connect('mongodb://localhost:27017/employees' ,{ useNewUrlParser: true});
-const db=mongoose.connection
-
-db.on('error',(error)=>{
-    console.error(error)
+const PORT = 1000;
+app.listen(PORT,()=>{
+    console.log("Connected to port: " + PORT);
 })
 
-db.once('open',()=>{
-    console.log('Connected to database')
-})
-
+app.use('/employees',employessRouter)
 app.use(express.json())
 
-const employessRouter=require('./routes/employees')
-app.use('/employees',employessRouter)
+// mongoose.connect(process.env.DATABASE_URL,{ useNewUrlParser: true})
+// mongoose.connect('mongodb://localhost:27017/employees' ,{ useNewUrlParser: true});
+// const db=mongoose.connection
 
-app.listen(3000,()=>{
-    // console.log('Server started')
+// db.on('error',(error)=>{
+//     console.error(error)
+// })
 
-
-    console.log(data[0].name);
-})
+// db.once('open',()=>{
+//     console.log('Connected to database')
+// })
