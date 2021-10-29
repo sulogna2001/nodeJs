@@ -1,6 +1,6 @@
 const mongoose=require('mongoose')
 
-const employeeSchema=new mongoose.Schema({
+const testerSchema=new mongoose.Schema({
     languages:{
         type:Array,
         required:true
@@ -19,24 +19,27 @@ const employeeSchema=new mongoose.Schema({
 
     },
     verified:{
-        type:Boolean
+        type:Boolean,
+        default:false
 
     },
-    _id:{
-        type:mongoose.Schema.Types.ObjectId
-
-    },
+   
     name:{
-        type:String
+        type:String,
+        required:true
+
 
     },
     email:{
-        type:String
+        type:String,
+        required:true
+
 
 
     },
     dob:{
-        type:Number
+        type:Number,
+        required:true
 
 
     },
@@ -46,7 +49,9 @@ const employeeSchema=new mongoose.Schema({
 
     },
     occupation:{
-        type:String
+        type:String,
+        required:true
+
 
 
     },
@@ -76,36 +81,15 @@ const employeeSchema=new mongoose.Schema({
     },
     testerTasks:{
         type:Array,
-        isCompleted:{
-            type:Boolean,
-            
-
-        },
-        _id: {
-            type:mongoose.Schema.Types.ObjectId
-
-            
-        },
-        reference:{
-            type:String
-
-        },
-        completedTime:{
-            type:Date
-        },
-        credit:{
-            type:Number
-        }
-
+        required:true
+       
 
 
     },
-    __v:{
-        type:Number
-
-    },
+   
     createdAt:{
-        type:Date
+        type:Date,
+        default: Date.now()
 
 
     },
@@ -116,6 +100,9 @@ const employeeSchema=new mongoose.Schema({
     username:{
         type:String
 
+    },
+    _id: {
+        type: String
     }
     
 
@@ -123,4 +110,5 @@ const employeeSchema=new mongoose.Schema({
 
 
 
-module.exports=mongoose.model('Emoloyee',employeeSchema)
+// module.exports=mongoose.model('tester',testerSchema)
+module.exports =  mongoose.model('tester', testerSchema, 'tester')
