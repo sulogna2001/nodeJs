@@ -113,7 +113,7 @@ const testerIncome = async (req, res) => {
     }
     catch(error){
         console.error(error)
-        res.json({status: false})
+        res.json({status: false, message: 'Something went wrong'})
         return;
     }
 
